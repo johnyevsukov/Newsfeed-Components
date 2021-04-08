@@ -114,3 +114,63 @@ const data = [
   Step 5: Try adding new article object to the data array. Make sure it is in the same format as the others.
   Refresh the page to see the new article.
 */
+
+data.push({
+  title: 'Hello there',
+  date: 'Nov 5th, 3020',
+  firstParagraph: `hello hello hello`,
+
+  secondParagraph: `hello hello hello`,
+
+  thirdParagraph: `hello hello hello`
+})
+
+data.push({
+  title: 'Hello there again',
+  date: 'Nov 7th, 3020',
+  firstParagraph: `hello hello hello again`,
+
+  secondParagraph: `hello hello hello again`,
+
+  thirdParagraph: `hello hello hello again`
+})
+
+function articleMaker({title, date, firstParagraph, secondParagraph, thirdParagraph}){
+  const article = document.createElement('div')
+  const titleOfArticle = document.createElement('h2')
+  const articleDate = document.createElement('p')
+  const paragraphOne = document.createElement('p')
+  const paragraphTwo = document.createElement('p')
+  const paragraphThree = document.createElement('p')
+  const expandButton = document.createElement('span')
+
+  article.appendChild(titleOfArticle)
+  article.appendChild(articleDate)
+  article.appendChild(paragraphOne)
+  article.appendChild(paragraphTwo)
+  article.appendChild(paragraphThree)
+  article.appendChild(expandButton)
+
+  article.classList.add('article')
+  articleDate.classList.add('date')
+  expandButton.classList.add('expandButton')
+
+  titleOfArticle.textContent = title
+  articleDate.textContent = date
+  paragraphOne.textContent = firstParagraph
+  paragraphTwo.textContent = secondParagraph
+  paragraphThree.textContent = thirdParagraph
+  expandButton.textContent = '+'
+
+  expandButton.addEventListener('click', function(event){
+    article.classList.toggle('article-open')
+
+  })
+  return article;
+}
+
+const articles = document.querySelector('.articles')
+
+data.forEach(function(item){
+  articles.appendChild(articleMaker(item))
+})
